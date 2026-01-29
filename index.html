@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>VA Income Tax Service | Veronica Alcaraz</title>
     
     <!-- Dynamic Animated Favicon Support -->
@@ -105,6 +105,7 @@
         }
         .lang-switch.en .opt-en, .lang-switch.es .opt-es { color: var(--brand-blue); }
 
+        /* CALENDLY FIXES */
         .glass-container {
             background: rgba(10, 10, 10, 0.98);
             backdrop-filter: blur(25px);
@@ -113,12 +114,23 @@
             box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.6);
             transition: all 0.5s ease;
             position: relative;
-            height: 700px;
+            height: 800px;
             border-radius: 2.5rem;
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
             overflow: hidden;
+        }
+
+        .calendly-inline-widget {
+            min-width: 320px;
+            width: 100%;
+            height: 100% !important;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .glass-container { height: 950px; border-radius: 1.5rem; }
         }
 
         .spinner {
@@ -265,7 +277,6 @@
         @media (max-width: 768px) {
             .hero-title { font-size: 42px !important; line-height: 1 !important; }
             .hero-desc { font-size: 1rem !important; }
-            .glass-container { height: 600px; border-radius: 1.5rem; }
             .stack-paper, .active-paper { width: 140px; height: 180px; }
             .paper-anim-container { height: 300px; }
         }
@@ -431,7 +442,7 @@
                 </div>
                 <div class="calendly-inline-widget" 
                      data-url="https://calendly.com/d/zgv-s64-t2g?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=6902fc" 
-                     style="min-width:320px; height:800px;">
+                     data-resize="true">
                 </div>
             </div>
         </div>
@@ -493,12 +504,10 @@
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
     <script>
-        // --- Animated Dynamic Favicon Logic ---
+        // Favicon Logic
         const favicon = document.getElementById('dynamic-favicon');
-        let hue = 220; // Start at Blue
-        
+        let hue = 220; 
         function updateFavicon() {
-            // Cycle between 220 (blue) and 270 (purple)
             hue = 220 + Math.sin(Date.now() / 2000) * 25;
             const color = `hsl(${hue}, 70%, 50%)`;
             const svg = `<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22${encodeURIComponent(color)}%22/><text y=%2250%%22 x=%2250%%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22>VA</text></svg>`;
